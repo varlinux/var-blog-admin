@@ -11,7 +11,7 @@
     "generate": "cross-env NODE_ENV=prod nuxt generate",
     "test": "jest",
     "deploy:prod": "cross-env NODE_ENV=prod node ./deploy",
-    "deploy:test": "cross-env NODE_ENV=dev node ./deploy"
+    "deploy:dev": "cross-env NODE_ENV=dev node ./deploy"
   },
   "config": {
     "nuxt": {

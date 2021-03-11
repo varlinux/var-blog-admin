@@ -69,9 +69,9 @@ export default {
       target: process.env.API_URL,
       pathRewrite: {
         changeOrigin: true, // 表示是否跨域
-        pathRewrite: {
-          '^/admin': ''
-        }
+        // pathRewrite: {
+        //   '^/admin': '/'
+        // }
       }
     }
   },
