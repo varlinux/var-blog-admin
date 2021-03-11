@@ -13,7 +13,7 @@ const service = axios.create({
 service.interceptors.request.use(
   config => {
     // do something before request is sent
-    const token = getSession(process.env.VUE_APP_TOKEN_KEY)
+    const token = getSession(process.env.NUXT_ENV_TOKEN_KEY)
     if (token) {
       // let each request carry token
       // ['X-Token'] is a custom headers key

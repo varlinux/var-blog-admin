@@ -80,7 +80,7 @@
       },
       handleSubmit(data) {
         console.log(`data : `, data)
-        this.$store.dispatch('insertTask', {
+        this.$store.dispatch('sys/task/insertTask', {
           taskList: [data]
         }).then(res => {
           if (res) {

@@ -93,8 +93,8 @@ export default {
   },
   methods: {
     ...mapActions([
-      'getAllImg',
-      'deleteImg'
+      'img/getAllImg',
+      'img/deleteImg'
     ]),
     uploadPic() {
       this.isShowPicUploadBox = true
@@ -106,7 +106,7 @@ export default {
         '2': 'Issue',
         '3': 'Other',
       }
-      this.getAllImg().then(res => {
+      this.$store.dispatch('img/getAllImg').then(res => {
         if (res._code === 200) {
           this.picList = res._data
           this.picList.forEach(item => {
@@ -127,7 +127,7 @@ export default {
         cancelButtonText: '取消',
         type: 'warning'
       }).then(() => {
-        this.deleteImg(row.img_name).then(res => {
+        this.$store.dispatch('img/deleteImg', row.img_name).then(res => {
           let msgType = res._code === 200 ? 'success' : 'error'
           this.$message({
             message: res._msg,

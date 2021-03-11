@@ -67,7 +67,7 @@
 </template>
 
 <script>
-  import {mapActions, mapState} from 'vuex'
+  import {mapState} from 'vuex'
   import {isExistInArray} from '@/utils/ArrayUtils'
   import {isNullForObject} from '@/utils/ObjectUtils'
 
@@ -104,14 +104,14 @@
       /**
        * 获取所有标签
        */
-      this.getAllTag().then(res => {
+      this.$store.dispatch('tag/getAllTag').then(res => {
         if (res._code === 200) {
           this.curTags = res._data
           // 标签数据回显
           this.refreshTag()
         }
       })
-      this.$store.dispatch('getArtypes', {}).then(res => {
+      this.$store.dispatch('sys/artype/getArtypes', {}).then(res => {
         if (res) {
           console.log(`getArtypes res : `, res)
           this.artTypes = res._data
@@ -134,13 +134,6 @@
       }
     },
     methods: {
-      ...mapActions([
-        'addArticle',
-        'getAllTag',
-        'insertTag',
-        'updateArticle',
-        'addImageToServer'
-      ]),
       // 表单初始化
       init() {
         // 页面从编辑按钮传递过来需要接收参数
@@ -171,7 +164,7 @@
         const formdata = new FormData()
         console.log(`$file : `, $file)
         formdata.append('image', $file)
-        this.addImageToServer(formdata).then((res) => {
+        this.$store.dispatch('img/addImageToServer', formdata).then((res) => {
           // 第二步.将返回的url替换到文本原位置![...](0) -> ![...](url)
           /**
            * $vm 指为mavonEditor实例，可以通过如下两种方式获取
@@ -191,13 +184,13 @@
         _this.form.author = this.userInfo.user_name
         let methodType = this.formType === 'update' ? 'updateArticle' : 'addArticle'
         console.log(`methodType : `, methodType, _this.form)
-        this[methodType](_this.form).then(res => {
+        this.$store.dispatch('article/' + methodType, _this.form).then(res => {
           if (res._code === 200) {
             this.$message({
               type: 'success',
               message: "文章保存成功"
             })
-            this.$router.push('/admin/article/articleList')
+            this.$router.push('/article/list')
           } else {
             this.$message({
               type: 'warning',

@@ -39,8 +39,6 @@
 </template>
 
 <script>
-  import {mapActions} from 'vuex'
-
   export default {
     name: "UploadPopBox",
     data() {
@@ -53,10 +51,6 @@
       }
     },
     methods: {
-      ...mapActions([
-        'addImageToServer',
-        'deleteImg'
-      ]),
       beforeUpload(file) {
         console.log(`this.beforeUpload : `, file)
       },
@@ -68,7 +62,7 @@
         console.log(`curEle : `, curEle.querySelector('img').src)
         const imgName = curEle.querySelector('img').src.match(/(?<=\/)\w*$/gi)[0]
         console.log(`imgName : `, imgName)
-        this.deleteImg(imgName).then(res => {
+        this.$store.dispatch('img/deleteImg', imgName).then(res => {
           const { _code, _data } =  res
           if (_code === 200) {
             this.$message({
@@ -94,7 +88,7 @@
         console.log(`file : `, params)
         console.log(`file : `, params.file)
         formData.append('image', params.file)
-        this.addImageToServer(formData).then(res => {
+        this.$store.dispatch('img/addImageToServer', formData).then(res => {
           const {_code, _data} = res
           if (_code === 200) {
             this.$message({

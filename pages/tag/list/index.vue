@@ -61,8 +61,6 @@
 </template>
 
 <script>
-  import {mapActions} from "vuex";
-
   export default {
     name: "TagList",
     data() {
@@ -76,7 +74,7 @@
       }
     },
     mounted() {
-      this.getAllTag().then(res => {
+      this.$store.dispatch('tag/getAllTag').then(res => {
         if (res._code === 200) {
           this.tagList = res._data
           this.loading = false
@@ -84,9 +82,6 @@
       })
     },
     methods: {
-      ...mapActions([
-        'getAllTag', 'deleteTag'
-      ]),
       /**
        * 删除标签
        * @param row 标签对象
@@ -97,7 +92,7 @@
           cancelButtonText: '取消',
           type: 'warning'
         }).then(() => {
-          this.deleteTag(row.tag_id).then(res => {
+          this.$store.dispatch('tag/deleteTag', row.tag_id).then(res => {
             let msgType = 'error'
             if (res._code === 200) {
               msgType = 'success'
@@ -116,7 +111,7 @@
        */
       updateBy(row){
         this.$router.push({
-          path: '/admin/tag/tagWriter',
+          path: '/tag/writer',
           query: row
         })
       },

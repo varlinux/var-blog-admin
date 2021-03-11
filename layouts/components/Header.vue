@@ -24,7 +24,7 @@
 </template>
 
 <script>
-import {removeSession} from '@/plugins/sessionStorage'
+import {clearSession} from '@/plugins/sessionStorage'
 export default {
   name: "Header",
   data() {
@@ -41,8 +41,8 @@ export default {
       return this.$router.push(uri)
     },
     logout() {
-      removeSession(process.env.VUE_APP_TOKEN_KEY)  // 删除本地保存token的sessionStorage键值对
-      return this.$router.push('/')
+      clearSession() // 删除本地保存token的sessionStorage键值对
+      return this.$router.push('/login')
     }
   }
 }

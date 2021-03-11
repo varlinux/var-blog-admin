@@ -94,7 +94,7 @@
       }
     },
     mounted() {
-      this.$store.dispatch('getIndexMenu').then(res => {
+      this.$store.dispatch('sys/menu/getIndexMenu').then(res => {
         if (res) {
           const {_data} = res
           this.data = _data.sort((item1, item2) => {
@@ -107,7 +107,7 @@
     methods: {
       saveMenu() {
         console.log()
-        this.$store.dispatch('insertMenu', {
+        this.$store.dispatch('sys/menu/insertMenu', {
           menuList: this.data,
           type: 1
         }).then(res => {
@@ -129,7 +129,7 @@
         }).then(({value}) => {
           try {
             data.dir_menu_url = value // 变更权限路径
-            this.$store.dispatch('updateMenu', data).then(res => {
+            this.$store.dispatch('sys/menu/updateMenu', data).then(res => {
               if (res) {
                 this.$message({
                   type: 'success',
@@ -201,7 +201,7 @@
               formData = {menuList: [data], type: 1}
             }
             console.log(`this.data: `, this.data, `methodName`, methodName, formData)
-            this.$store.dispatch(methodName, formData).then(res => {
+            this.$store.dispatch('sys/menu/' + methodName, formData).then(res => {
               if (res) {
                 this.$message({
                   type: 'success',
@@ -227,7 +227,7 @@
           const children = parent.data.children || parent.data
           const index = children.findIndex(d => d.id === data.id)
           children.splice(index, 1)
-          this.$store.dispatch('deleteMenu', data._id).then(res => {
+          this.$store.dispatch('sys/menu/deleteMenu', data._id).then(res => {
             if (res) {
               this.$message({
                 type: 'success',

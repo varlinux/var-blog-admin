@@ -1,3 +1,4 @@
+require('dotenv').config()
 if (process.env.NODE_ENV === 'prod') {
   require('custom-env').env('prod')
 } else if (process.env.NODE_ENV === 'test') {
@@ -34,6 +35,9 @@ export default {
     '@/plugins/element-ui', {
       src: '@/plugins/route',
       mode: 'client'
+    } , {
+      src: '@/plugins/mavon-editor',
+      mode: 'client'
     }
   ],
 
@@ -56,13 +60,13 @@ export default {
 
   proxy: {
     '/api': {
-      target: process.env.VUE_API_URL,
+      target: process.env.API_URL || 'http://localhost:3000',
       pathRewrite: {
         changeOrigin: true // 表示是否跨域
       }
     },
     '/admin/login': {
-      target: process.env.VUE_API_URL,
+      target: process.env.API_URL,
       pathRewrite: {
         changeOrigin: true, // 表示是否跨域
         pathRewrite: {

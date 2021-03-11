@@ -52,7 +52,7 @@
 </template>
 
 <script>
-  import {mapActions, mapState} from 'vuex'
+  import {mapState} from 'vuex'
   import {isExistInArray} from '@/utils/ArrayUtils'
   import {isNullForObject} from '@/utils/ObjectUtils'
 
@@ -112,23 +112,18 @@
       }),
     },
     methods: {
-      ...mapActions([
-        'addArticle',
-        'getAllTag',
-        'insertTag',
-        'updateArticle'
-      ]),
       onSubmit() {
         this.loading = true
         let _this = this
         _this.form.blog_user_id = this.userInfo.user_id
-        this[this.formType === 'update' ? 'updateArticle' : 'addArticle'](_this.form).then(res => {
+        this.$store.dispatch('article/' + this.formType === 'update' ? 'updateArticle' : 'addArticle',
+          _this.form).then(res => {
           if (res._code === 200) {
             this.$message({
               type: 'success',
               message: "文章保存成功"
             })
-            this.$router.push('/admin/article/articleList')
+            this.$router.push('/article/list')
           } else {
             this.$message({
               type: 'warning',

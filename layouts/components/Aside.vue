@@ -12,8 +12,8 @@
                     <span slot="title">文章</span>
                 </template>
                 <el-menu-item-group>
-                    <el-menu-item index="1-1" @click="goTo('/admin/article/articleWriter')">写文章</el-menu-item>
-                    <el-menu-item index="/article/list" @click="goTo('/admin/article/articleList')">列表
+                    <el-menu-item index="1-1" @click="goTo('/article/writer')">写文章</el-menu-item>
+                    <el-menu-item index="/article/list" @click="goTo('/article/list')">列表
                     </el-menu-item>
                     <el-menu-item index="1-4">模板</el-menu-item>
                     <el-menu-item index="1-2">模板</el-menu-item>
@@ -26,7 +26,7 @@
                     <span slot="title">标签</span>
                 </template>
                 <el-menu-item-group>
-                    <el-menu-item index="2-1" @click="goTo('/admin/tag/tagList')">列表</el-menu-item>
+                    <el-menu-item index="2-1" @click="goTo('/tag/list')">列表</el-menu-item>
                     <el-menu-item index="2-2">样式</el-menu-item>
                 </el-menu-item-group>
             </el-submenu>
@@ -47,7 +47,7 @@
                     <span slot="title">系统</span>
                 </template>
                 <el-menu-item-group>
-                    <el-menu-item index="4-1" @click="goTo('/admin/sys/menuTree')">导航栏</el-menu-item>
+                    <el-menu-item index="4-1" @click="goTo('/sys/menu')">导航栏</el-menu-item>
                     <el-menu-item index="4-2">图片</el-menu-item>
                     <el-menu-item index="4-3">样式</el-menu-item>
                     <el-menu-item index="4-4">日志</el-menu-item>
@@ -92,7 +92,7 @@
                     <span slot="title">图片</span>
                 </template>
                 <el-menu-item-group>
-                    <el-menu-item index="8-1" @click="goTo('/admin/pic/picGithub')">Github</el-menu-item>
+                    <el-menu-item index="8-1" @click="goTo('/pic/github')">Github</el-menu-item>
                     <el-menu-item index="8-2">系统</el-menu-item>
                     <el-menu-item index="8-3">文章</el-menu-item>
                 </el-menu-item-group>
@@ -103,8 +103,8 @@
                     <span slot="title">任务</span>
                 </template>
                 <el-menu-item-group>
-                    <el-menu-item index="8-1" @click="goTo('/admin/task/list')">前台</el-menu-item>
-                    <el-menu-item index="8-2" @click="goTo('/admin/task/admin')">回收站</el-menu-item>
+                    <el-menu-item index="8-1" @click="goTo('/task/list')">前台</el-menu-item>
+                    <el-menu-item index="8-2" @click="goTo('/task/admin')">回收站</el-menu-item>
                 </el-menu-item-group>
             </el-submenu>
         </el-menu>

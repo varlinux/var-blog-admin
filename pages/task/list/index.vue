@@ -126,7 +126,7 @@
         const dataForm = {
           site_task_status: 1
         }
-        this.$store.dispatch('getTasks', dataForm).then(res => {
+        this.$store.dispatch('sys/task/getTasks', dataForm).then(res => {
           if (res) {
             const {_data} = res
             _data.forEach(item => {
@@ -145,7 +145,7 @@
           cancelButtonText: '取消',
           type: 'warning'
         }).then(() => {
-          this.$store.dispatch('deleteTask', data._id).then(res => {
+          this.$store.dispatch('sys/task/deleteTask', data._id).then(res => {
             let msgType = res._code === 200 ? 'success' : 'error'
             this.$message({
               message: res._msg,

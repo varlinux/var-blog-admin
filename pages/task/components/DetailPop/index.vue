@@ -104,7 +104,7 @@
         this.$parent.$data.isShowDetail = false
       },
       handleSubmit(data) {
-        this.$store.dispatch('updateTask', data).then(res => {
+        this.$store.dispatch('sys/task/updateTask', data).then(res => {
           if (res) {
             if (res) {
               this.$message.success('任务更新成功')

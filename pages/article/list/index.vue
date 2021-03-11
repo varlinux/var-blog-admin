@@ -67,8 +67,6 @@
 </template>
 
 <script>
-import {mapActions} from 'vuex'
-
 export default {
   name: 'ArticleList',
   data() {
@@ -83,7 +81,7 @@ export default {
   },
   watch: {
     $route(to, from) {
-      if (from.path === '/article/articleWriter') {
+      if (from.path === '/article/writer') {
         this.selectArticles()
       }
     }
@@ -92,12 +90,9 @@ export default {
     this.selectArticles()
   },
   methods: {
-    ...mapActions([
-      'getAllArticle', 'deleteArticle'
-    ]),
     selectBy() {},
     selectArticles() {
-      this.getAllArticle().then(res => {
+      this.$store.dispatch('article/getAllArticle').then(res => {
         if (res._code === 200) {
           this.articleList = res._data
           this.loading = false
@@ -114,7 +109,7 @@ export default {
         cancelButtonText: '取消',
         type: 'warning'
       }).then(() => {
-        this.deleteArticle(row.atc_id).then(res => {
+        this.$store.dispatch('article/deleteArticle', row.atc_id).then(res => {
           let msgType = 'error'
           if (res && res._data) {
             const {_code} = res
@@ -137,7 +132,7 @@ export default {
      */
     updateBy(row){
       this.$router.push({
-        path: '/admin/article/articleWriter',
+        path: '/article/writer',
         query: row
       })
     },
