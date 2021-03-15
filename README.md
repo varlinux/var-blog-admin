@@ -6,4 +6,9 @@
 
 
 ## Deploy server then start
-pm2 start yarn -- run start
+
+pm2 start yarn --name admin -- run start:prod
+
+`or`
+
+pm2 start yarn --name admin -- run start:test
