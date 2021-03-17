@@ -26,6 +26,9 @@ export default {
 
   // Global CSS: https://go.nuxtjs.dev/config-css
   css: [
+    '@toast-ui/editor/dist/toastui-editor.css', // Editor's Style
+    'codemirror/lib/codemirror.css', // Editor's Dependency Style
+    'highlight.js/styles/github.css', // Editor's Dependency Style
     'element-ui/lib/theme-chalk/index.css',
     '@/assets/style/base.sass'
   ],

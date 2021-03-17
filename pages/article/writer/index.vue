@@ -70,6 +70,7 @@
   import {mapState} from 'vuex'
   import {isExistInArray} from '@/utils/ArrayUtils'
   import {isNullForObject} from '@/utils/ObjectUtils'
+  import {reverseTrans} from '@/utils/CharacterUtils'
 
   export default {
     name: "ArticleWriter",
@@ -143,6 +144,11 @@
           for (let _key in data) {
             tempKey = _key.indexOf('atc_') === -1 ? _key : _key.slice(4)
             this.form[tempKey] = data[_key]
+            if (_key === 'atc_content') {
+              const newContent = reverseTrans(data[_key])
+              console.log(`newContent : `, newContent)
+              this.form[tempKey] = reverseTrans(newContent)
+            }
           }
           // console.log(`data : `, data)
           this.formType = "update"
