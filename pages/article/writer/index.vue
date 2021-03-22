@@ -114,7 +114,6 @@
       })
       this.$store.dispatch('sys/artype/getArtypes', {}).then(res => {
         if (res) {
-          console.log(`getArtypes res : `, res)
           this.artTypes = res._data
         }
       })
@@ -126,11 +125,6 @@
     },
     watch: {
       $route(to, from) {
-        console.log(`article writer`)
-        // this.init()
-        // if (from.path === '/admin/article/articleList') {
-        //   this.reload()
-        // }
         this.reload()
       }
     },
@@ -146,11 +140,9 @@
             this.form[tempKey] = data[_key]
             if (_key === 'atc_content') {
               const newContent = reverseTrans(data[_key])
-              console.log(`newContent : `, newContent)
               this.form[tempKey] = reverseTrans(newContent)
             }
           }
-          // console.log(`data : `, data)
           this.formType = "update"
           this.refreshTag()
         }
@@ -168,7 +160,6 @@
       $imgAdd(pos, $file) {
         // 第一步.将图片上传到服务器.
         const formdata = new FormData()
-        console.log(`$file : `, $file)
         formdata.append('image', $file)
         this.$store.dispatch('img/addImageToServer', formdata).then((res) => {
           // 第二步.将返回的url替换到文本原位置![...](0) -> ![...](url)
@@ -189,7 +180,6 @@
         _this.form.blog_user_id = this.userInfo.user_id
         _this.form.author = this.userInfo.user_name
         let methodType = this.formType === 'update' ? 'updateArticle' : 'addArticle'
-        console.log(`methodType : `, methodType, _this.form)
         this.$store.dispatch('article/' + methodType, _this.form).then(res => {
           if (res._code === 200) {
             this.$message({

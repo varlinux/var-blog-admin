@@ -1,7 +1,7 @@
 <template>
   <div class="wrapper">
     <div class="content-header">
-      <el-button class="el-icon-delete" @click="">删除</el-button>
+      <el-button class="el-icon-delete">删除</el-button>
       <el-autocomplete
           v-model="state"
           :fetch-suggestions="querySearchAsync"
